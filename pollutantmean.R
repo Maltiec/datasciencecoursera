@@ -1,6 +1,6 @@
 pollutantmean <- function(directory,pollutant,id=1:332) {
   mean_value<-0
-  na_cleared_list<-data.frame(Date=0,sulfate=0,nitrate=0,ID=0)
+  na_cleared_list<-data.frame(Date=as.Date(character()),sulfate=double(),nitrate=double(),ID=integer())
   file_list<-list.files(paste(getwd(),directory,sep="/"))
   for (file_name in file_list){
     current_table<-read.csv(paste(getwd(),directory,file_name,sep="/"))
@@ -12,7 +12,7 @@ pollutantmean <- function(directory,pollutant,id=1:332) {
       }
     }
   }
-  na_cleared_list<-na_cleared_list[-c(1),]
+##  na_cleared_list<-na_cleared_list[-c(1),]
 ##  print(na_cleared_list)
   mean_value<-colMeans(na_cleared_list[pollutant])
   print(mean_value)
